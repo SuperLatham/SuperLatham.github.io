@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>紅白戦開催補助君</h1>
+    <div>
+      <input type="checkbox" name="team-switch" id="team-switch">
+      <label for="team-switch">自動チーム分け</label>
+    </div>
+    <div id="input" class="mb-10">
+      <table id="tbl">
+        <tbody>
+          <tr>
+            <th>名前</th>
+            <th>ガチ度</th>
+            <th>時間</th>
+            <th class="team-col">チーム</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>
+              <input type="text" id="name" class="name0">
+            </th>
+            <th>
+              <input type="number" id="gati" class="gati0" min="1" max="5" value="5">
+            </th>
+            <th>
+              <select name="team" id="time" class="time0">
+                <option value="2">早め</option>
+                <option value="1">普通</option>
+                <option value="0">遅め</option>
+              </select>
+            </th>
+            <th class="team-col">
+              <select name="team" id="team" class="team0">
+                <option value="0">チームA</option>
+                <option value="1">チームB</option>
+              </select>
+            </th>
+            <th><button class="del">削除</button></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <button id="add" class="add">追加</button>
+      <button id="submit">実行</button>
+    </div>
+    <div id="output" class="mt-10">
+    </div>
+    <script
+			  src="https://code.jquery.com/jquery-3.7.1.js"
+			  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+			  crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
