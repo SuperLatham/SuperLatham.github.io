@@ -1,14 +1,5 @@
-// let players = [];
 let team0 = [];
 let team1 = [];
-
-// let player1 = {名前: "satoru", ガチ度:5, 時間:"遅め", チーム:0};
-// let player2 = {名前: "matadoll", ガチ度:1, 時間:"早め", チーム:1};
-
-// players.push(player1);
-// players.push(player2);
-
-// console.log(players);
 
 let tbl = document.getElementById("tbl");
 let num = 1;
