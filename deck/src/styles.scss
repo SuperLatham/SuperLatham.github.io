@@ -1,0 +1,71 @@
+// 変数
+$bg: #f5f6fa;
+$card-bg: #fff;
+$text: #222;
+$title: #333;
+$primary: #4f8cff;
+$primary-hover: #357ae8;
+$shadow: 0 4px 16px rgba(0,0,0,0.08);
+$radius: 12px;
+$radius-sm: 6px;
+$max-width: 400px;
+$font-stack: 'Segoe UI', 'Meiryo', sans-serif;
+
+// ミックスイン（必要なら拡張可能）
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  background: $bg;
+  font-family: $font-stack;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: $max-width;
+  margin: 60px auto;
+  background: $card-bg;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  padding: 32px 24px 24px 24px;
+  text-align: center;
+
+  h1 {
+    font-size: 1.6em;
+    margin-bottom: 24px;
+    color: $title;
+  }
+
+  input[type="file"] {
+    margin-bottom: 16px;
+    @include center-block;
+  }
+
+  button#decode-button {
+    background: $primary;
+    color: #fff;
+    border: none;
+    border-radius: $radius-sm;
+    padding: 10px 24px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-bottom: 20px;
+
+    &:hover {
+      background: $primary-hover;
+    }
+  }
+
+  #result {
+    margin-top: 18px;
+    font-size: 1.1em;
+    color: $text;
+    word-break: break-all;
+    min-height: 32px;
+  }
+}

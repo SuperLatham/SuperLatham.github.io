@@ -1,0 +1,306 @@
+body {
+    background: #f5f6fa;
+    font-family: 'Segoe UI', 'Meiryo', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 60px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    padding: 32px 24px 24px 24px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.6em;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+h3 {
+    font-size: 1.15em;
+    margin: 0 0 10px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    margin-bottom: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin: 8px 0;
+    box-shadow: 0 2px 6px rgba(79,140,255,0.08);
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background: #357ae8;
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+    background: #285bb5;
+}
+
+button:disabled,
+input[type="button"]:disabled,
+input[type="submit"]:disabled {
+    background: #b3cfff;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+#result {
+    margin-top: 18px;
+    font-size: 1.1em;
+    color: #222;
+    word-break: break-all;
+    min-height: 32px;
+    width: 100%;
+    text-align: center;
+}
+
+#result textarea {
+    margin: 0 auto;
+}
+
+.controls {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color-picker {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#color-preview {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.file-input-container {
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* 画像プレビュー領域のレスポンシブ対応 */
+#image-preview {
+    width: 480px;
+    height: 270px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 12px 2vw 16px 2vw;
+        max-width: 100vw;
+        margin: 0;
+        border-radius: 0;
+    }
+    #image-preview {
+        width: 100vw;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        min-width: 0;
+        min-height: 0;
+    }
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #result textarea {
+        width: 100% !important;
+        min-width: 0;
+    }
+    #group-area {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+    }
+    #group-area > div {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100vw !important;
+    }
+}
+
+/* グループ・未割り当てカードの横並びを維持 */
+#group-area {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: stretch; /* 高さを揃える */
+    margin-top: 24px;
+    flex-wrap: nowrap;
+    max-width: 1800px; /* 横幅を広く */
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+#image-preview:focus {
+    box-shadow: 0 0 0 2px #4f8cff;
+}
+
+#image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+}
+
+#image-preview .placeholder {
+    color: #aaa;
+    font-size: 1.1em;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* カード要素の折り返し・省略対応 */
+.draggable-card {
+    white-space: nowrap;         /* 1行表示 */
+    overflow: hidden;            /* はみ出し非表示 */
+    text-overflow: ellipsis;     /* 省略記号 */
+    max-width: 100%;             /* 親幅に収める */
+    box-sizing: border-box;
+    display: block;
+}
+
+/* 未割り当て・グループ枠の横スクロール防止 */
+#group-area > div {
+    width: 320px;
+    max-width: 100%;
+    min-width: 0 !important;
+    box-sizing: border-box;
+    overflow-x: auto;
+    word-break: break-all;
+}
+
+/* グループ全体の横スクロール防止 */
+#group-area {
+    overflow-x: auto;
+    flex-wrap: wrap;
+}
+
+/* スマホ時の幅調整 */
+@media (max-width: 600px) {
+    .group-box, .unassigned-box,
+    #group-area > div {
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+}
+
+/* --- PC用 --- */
+#group-area {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: stretch;
+    margin-top: 24px;
+    flex-wrap: nowrap;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.group-box, .unassigned-box {
+    min-width: 260px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    background: #fff;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 600px;
+    /* 幅はJSでflex-basisを動的に指定 */
+}
+
+/* グループ追加時も幅が揃うように */
+#group-area > .group-box,
+#group-area > .unassigned-box {
+    min-width: 260px;
+    max-width: 100%;
+    box-sizing: border-box;
+    /* flex-basisはJSで上書き */
+}
+
+/* カード名省略・折り返し防止 */
+.draggable-card {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* スマホ時は100%幅・高さ自動 */
+@media (max-width: 900px) {
+    #group-area {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+        max-width: 100vw;
+    }
+    .group-box, .unassigned-box,
+    #group-area > .group-box,
+    #group-area > .unassigned-box {
+        width: 100% !important;
+        max-width: 100vw !important;
+        height: auto !important;
+        min-width: 0 !important;
+        flex-basis: 100% !important;
+    }
+}

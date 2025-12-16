@@ -1,0 +1,121 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+  紅白
+*/
+
+.output {
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+}
+
+.table-left {
+  margin: auto;
+}
+
+.table-right {
+  margin: auto;
+}
+
+.vs {
+  margin: auto;
+}
+
+table{
+  border-collapse: collapse;
+  th {
+    border: solid 1px;
+    width: 200px;
+  }
+}
+
+/*
+  ボタン周り
+*/
+
+.btn {
+  margin-bottom: 10px;
+}
+
+.team-switch {
+  &-wrap {
+    position: relative;
+  }
+  position: absolute;
+  width: 0;
+  height: 0;
+  display: none;
+  &-label {
+    display: flex;
+    align-items: center;
+  }
+  &-base {
+    width: 36px;
+    border-radius: 15px;
+    height: 20px;
+    background-color: #ddd;
+  }
+  &-title {
+    margin-left: 4px;
+  }
+  &:checked ~ &-base{
+    background-color: #dbeafe;
+    transition: 0.1s;
+  }
+  &-circle {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 12px;
+    background-color: gray;
+    transition: 0.1s;
+  }
+  &:checked ~ &-circle {
+    transform: translateX(100%);
+    background-color: blue;
+  }
+}
+
+
+@for $i from 0 through 10 {
+  .m {
+    &-#{$i * 10} {
+      margin: #{$i * 10}px;
+    }
+
+    &t-#{$i * 10} {
+      margin-top: #{$i * 10}px;
+    }
+    &b-#{$i * 10} {
+      margin-bottom: #{$i * 10}px;
+    }
+  }
+}
+
+/*
+  引っ越し
+*/
+
+.input-container {
+  display: flex;
+  min-height: 100vh;
+  margin: 15px 0 30px 0;
+  textarea {
+    resize: none;
+  }
+  .pre-input {
+    flex: 1;
+    text-align: center;
+    margin-right: 15px;
+  }
+  .post-input {
+    flex: 1;
+    text-align: center;
+    margin-right: 15px;
+  }
+}

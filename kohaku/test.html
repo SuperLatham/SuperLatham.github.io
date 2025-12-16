@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="test_files/style.css">
+</head>
+
+<body cz-shortcut-listen="true">
+  <h1>紅白戦開催補助君</h1>
+  <div class="mb-10">
+    <label for="team-switch" class="team-switch-label">
+      <div class="team-switch-wrap">
+        <input type="checkbox" name="team-switch" id="team-switch" class="team-switch" checked="checked">
+        <div class="team-switch-circle"></div>
+        <div class="team-switch-base"></div>
+      </div>
+      <span class="team-switch-title">自動チーム分け</span>
+    </label>
+  </div>
+  <div id="input" class="mb-10">
+    <table id="tbl">
+      <tbody>
+        <tr>
+          <th>名前</th>
+          <th>ガチ度</th>
+          <th>時間</th>
+          <th class="team-col" style="display: none;">チーム</th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>
+            <input type="text" id="name" class="name0" autocomplete="off">
+          </th>
+          <th>
+            <input type="number" id="gati" class="gati0" min="1" max="5" value="5">
+          </th>
+          <th>
+            <select name="team" id="time" class="time0">
+              <option value="2" selected="selected">早め</option>
+              <option value="1">普通</option>
+              <option value="0">遅め</option>
+            </select>
+          </th>
+          <th class="team-col" style="display: none;">
+            <select name="team" id="team" class="team0">
+              <option value="0" selected="selected">チームA</option>
+              <option value="1">チームB</option>
+            </select>
+          </th>
+          <th><button class="del">削除</button></th>
+        </tr>
+        <tr>
+          <th><input type="text" id="name" class="name1" autocomplete="off"></th>
+          <th> <input type="number" id="gati" class="gati1" min="1" max="5" value="5"></th>
+          <th><select name="team" id="time" class="time1">
+              <option value="2" selected="selected">早め</option>
+              <option value="1">普通</option>
+              <option value="0">遅め</option>
+            </select></th>
+          <th class="team-col" style="display: none;"><select name="team" id="team" class="team1">
+              <option value="0" selected="selected">チームA</option>
+              <option value="1">チームB</option>
+            </select></th>
+          <th><button class="del">削除</button></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-10">
+    <button id="add" class="add">参加者を追加</button>
+    <button id="submit">対戦表を生成</button>
+    <button id="reSubmit">追加参加者分を生成</button>
+  </div>
+  <div id="output" class="mt-10">
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            <th>名前</th>
+            <th>ガチ度</th>
+            <th>時間</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>5</th>
+            <th>早め</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            <th>時間</th>
+            <th>ガチ度</th>
+            <th>名前</th>
+          </tr>
+          <tr>
+            <th>早め</th>
+            <th>5</th>
+            <th></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="test_files/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <script src="test_files/main.js"></script>
+  <!-- Code injected by live-server -->
+  <script>
+    // <![CDATA[  <-- For SVG support
+    if ('WebSocket' in window) {
+      (function () {
+        function refreshCSS() {
+          var sheets = [].slice.call(document.getElementsByTagName("link"));
+          var head = document.getElementsByTagName("head")[0];
+          for (var i = 0; i < sheets.length; ++i) {
+            var elem = sheets[i];
+            var parent = elem.parentElement || head;
+            parent.removeChild(elem);
+            var rel = elem.rel;
+            if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+              var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+              elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+            }
+            parent.appendChild(elem);
+          }
+        }
+        var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+        var address = protocol + window.location.host + window.location.pathname + '/ws';
+        var socket = new WebSocket(address);
+        socket.onmessage = function (msg) {
+          if (msg.data == 'reload') window.location.reload();
+          else if (msg.data == 'refreshcss') refreshCSS();
+        };
+        if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+          console.log('Live reload enabled.');
+          sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+        }
+      })();
+    }
+    else {
+      console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+    }
+    // ]]>
+  </script>
+
+</body>
+
+</html>
